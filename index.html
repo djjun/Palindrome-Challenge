@@ -1,0 +1,43 @@
+<html ng-app="app">
+<head>
+    <title>Palindrome</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script>
+        var app = angular.module('app', []);
+        app.controller('textCtrl', function($scope) {
+            $scope.textString="";
+            $scope.check="";
+            $scope.checkFn = function() {
+
+
+                var str = $scope.textString;
+                var str1 = str.split('').join('').replace( /\s/g,'' );
+                var str2 = str.split('').reverse().join('').replace( /\s/g,'' );
+                $scope.check = str1 === str2;
+            }
+
+        });
+
+    </script>
+</head>
+
+<body ng-controller="textCtrl">
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h2>Enter a String/Number</h2>
+        </div>
+        <div class="panel-body text-center">
+            <input type="text" ng-model="textString" class="form-control" placeholder="Enter string/number">
+        </div>
+        <div class="panel-footer text-center">
+            <button type="button" class="btn btn-success" ng-click="checkFn();">Check</button>
+        </div>
+        <div ng-if="check" class="alert alert-success" role="alert">Its a Palindrome!</div>
+    </div>
+</div>
+</body>
+</html>
